@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">    
+</html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de documento HTML</title>
+    <script>
+        
+        'use strict'
+
+        
+        for(let km = 400; km >= 1; km--) {
+            if(km % 50 == 0) {
+               document.write(`Estação de Embarque  ${km}<br>`)
+            }
+        }
+
+        
+        let quilometro
+        do {
+            quilometro = parseInt(prompt('Informe um quilômetro entre 1 e 400:'))
+        } while(isNaN(quilometro) || quilometro < 1 || quilometro > 400)
+
+       
+        let msg
+        switch(quilometro) {
+            case 98:
+            case 190:
+            case 283:
+            case 379:
+                msg = 'Posto de conveniência da Rede Mil Grau'
+                break
+
+            case 155:
+            case 355:
+                msg = 'Posto da Polícia Ferroviária (sim, isso existe!'
+                break
+
+            case 137: 
+                msg = 'Aeroporto Interplanetario de Virapratos'
+                break
+
+            case 204: 
+                msg = 'Hotel Cacique Internacional 6 estrelas'
+                break
+
+            case 311: 
+                msg = 'Boleli shopping center'
+                break
+
+            case 356: 
+                msg = 'Franca AcquaParque Unidade III'
+                break
+
+            default:
+                msg = 'Nada aqui.'
+        }
+        alert(msg)
+
+    </script>
+</head>
+<body>
+
+</body>
+</html> 
