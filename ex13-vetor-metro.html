@@ -22,6 +22,18 @@
                 vetor. Faça um loop for TRADICIONAL para exibir as 
                 estações e depois passe um traço horizontal (<hr>).
                 
+             */   
+             let linha1 = [] // Ou: let linha1 = Array()
+        linha1.push('Santa Teresinha', 'Estação', 'Centro', 'Jardim Lima', 'Aeroporto I')
+        
+        for(let i = 0; i < linha1.length; i++) {
+            document.write(linha1[i] + '<br>')
+        }
+        // Traço horizontal
+        document.write('<hr>')   
+
+        /*
+
             No ano seguinte, a linha foi expandida com a inauguração
             das estações City Petrópolis, no extremo norte, e Aeroporto
             IV, no extremo sul.
@@ -29,7 +41,21 @@
             2) Insira as novas estações no vetor nas posições apropriadas.
                 Faça um loop FOR..OF para exibir as estações e depois
                 passe um traço horizontal (<hr>).
-                
+          
+                */
+
+        linha1.unshift('City Petrópolis')
+        linha1.push('Aeroporto IV')
+
+        for(let estacao of linha1) {
+            document.write(estacao + '<br>')
+        }
+        document.write('<hr>')
+
+        /*                  
+
+
+
             Já em 2125, foi criada a estação Vila Imperador, entre
             as estações Santa Teresinha e Estação, para atender à grande
             demanda da maior universidade da cidade, a Fatec de Franca.
@@ -40,6 +66,22 @@
                 Faça um loop for TRADICIONAL EM SENTIDO INVERSO para exibir
                 as estações e depois passe um traço horizontal (<hr>).
                 
+             */
+
+        let posEstacao = linha1.indexOf('Estação')
+        linha1.splice(posEstacao, 0, 'Vila Imperador')
+
+        linha1.splice(linha1.indexOf('Aeroporto I'), 0, 'Jardim Alvorada')
+
+        for(let i = linha1.length - 1; i >= 0; i--) {
+            document.write(linha1[i] + '<br>')
+        }
+        document.write('<hr>')
+
+        /*
+
+
+
             Em 2130, a estação Centro foi desativada, e em seu lugar duas
             novas estações entraram em funcionamento: as estações 9 de Julho
             e Champagnat.
@@ -48,6 +90,21 @@
                 Faça um loop for TRADICIONAL para exibir as estações e depois
                 passe um traço horizontal (<hr>).
                 
+               */
+
+      
+        linha1.splice(linha1.indexOf('Centro'), 1, '9 de Julho', 'Champagnat')
+
+        for(let i = 0; i < linha1.length; i++) {
+            document.write(linha1[i] + '<br>')
+        }
+        document.write('<hr>')
+        
+        /*
+
+
+
+
             Em 2133, no entanto, Franca entrou em guerra com os 
             restinguenses, que invadiram e destruíram as duas estações 
             mais ao sul do metrô de Franca. Neste mesmo ano, em meio
@@ -57,7 +114,20 @@
                 Faça um loop FOR...OF para exibir as estações e depois
                 passe um traço horizontal (<hr>).            
         */
-     
+            
+
+        linha1.pop() 
+        linha1.pop()
+
+        
+        linha1.splice(linha1.indexOf('Santa Teresinha'), 1)
+
+        for(let estacao of linha1) {
+            document.write(estacao + '<br>')
+        }      
+
+
+
        
     </script>
 </head>
