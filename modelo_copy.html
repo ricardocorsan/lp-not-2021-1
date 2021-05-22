@@ -1,130 +1,209 @@
 <!DOCTYPE html>
-<html lang="pt-br">    
-</html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modelo de documento HTML</title>
+    <title>Acumulador</title>
+
+    <style>
+        * {
+            font-family: 'Candara', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        html,
+        body {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            font-size: 12pt;
+            line-height: 18pt;
+            color: #444;
+        }
+
+        body {
+            background-color: indigo;
+            background-image: linear-gradient(slateblue 50%, indigo);
+            background-repeat: no-repeat;
+            padding: 0;
+        }
+
+        body>div {
+            background: whitesmoke;
+            margin: 3%;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+            color: indigo;
+            text-shadow: 2px 2px 2px rgba(75, 0, 130, 0.5);
+
+        }
+
+        div>div {
+            padding: 10px;
+            width: 70%;
+            max-width: 90%;
+            min-width: 250px;
+            margin: 1% auto;
+            text-align: center;
+        }
+
+        div label {
+            display: block;
+        }
+
+        button {
+            font-size: 12pt;
+            padding: 8px;
+            border-radius: 8px;
+            color: white;
+            background-color: indigo;
+        }
+
+        p {
+            display: inline-block;
+            width: 30%;
+            margin: 0;
+        }
+
+        p span {
+            font-weight: bold;
+            color: indigo;
+        }
+
+        div div:last-of-type {
+            background-color: lavender;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h1>Acumulador</h1>
+
+        <div>
+            <label>Informe um número</label>
+            <input id="num" type="number">
+        </div>
+
+        <div>
+            <button id="acumular">Acumular!</button>
+        </div>
+
+        <div>
+            <p>Quantidade: <span id="quant">0</span></p>
+            <p>Média: <span id="media">0</span></p>
+            <p>Soma: <span id="soma">0</span></p>
+        </div>
+    </div>
+
     <script>
-        
-         /*
-        
-            O ano é 2119. A prefeita Enza Valentina Faleiros Trajano 
-            Bittar da Silva inaugura a primeira linha do Metrô de Franca, 
-            no sentido norte-sul, com as seguintes estações: Santa Teresinha,
-            Estação, Centro, Jardim Lima e Aeroporto I.
-            1) Crie um vetor vazio e depois insira as estações no
-                vetor. Faça um loop for TRADICIONAL para exibir as 
-                estações e depois passe um traço horizontal (<hr>).
-     
-       */
-
-        let linha1 = [] // Ou: let linha1 = Array()
-        linha1.push('Santa Teresinha', 'Estação', 'Centro', 'Jardim Lima', 'Aeroporto I')
-        // Poderia ter feito a inserção um a um:
-        // linha1.push('Santa Teresinha')
-        // linha1.push('Estação')
-        // ...
-        // linha1.push('Aeroporto I')
-
-        // Loop for tradicional
-        for(let i = 0; i < linha1.length; i++) {
-            document.write(linha1[i] + '<br>')
-        }
-        // Traço horizontal
-        document.write('<hr>')
+        // 'use strict' impede que variáveis sejam declaradas
+        // sem o uso de let, var ou const
+        // Inicializar variáveis diretamente é má prática de
+        // programação
+        'use strict'
 
         /*
-            No ano seguinte, a linha foi expandida com a inauguração
-            das estações City Petrópolis, no extremo norte, e Aeroporto
-            IV, no extremo sul.
-            2) Insira as novas estações no vetor nas posições apropriadas.
-                Faça um loop FOR..OF para exibir as estações e depois
-                passe um traço horizontal (<hr>).
+            3. Com JavaScript, capture todos os elementos da parte HTML que tenham id. 
+            Utilize um dos métodos para capturar metade dos elementos e o outro método 
+            para capturar os demais.
         */
-
-        linha1.unshift('City Petrópolis')
-        linha1.push('Aeroporto IV')
-
-        for(let estacao of linha1) {
-            document.write(estacao + '<br>')
-        }
-        document.write('<hr>')
+        const elNum = document.getElementById('num')
+        const elAcumular = document.getElementById('acumular')
+        const elQuant = document.querySelector('#quant')
+        const elMedia = document.querySelector('#media')
+        const elSoma = document.querySelector('#soma')
 
         /*
-            Já em 2125, foi criada a estação Vila Imperador, entre
-            as estações Santa Teresinha e Estação, para atender à grande
-            demanda da maior universidade da cidade, a Fatec de Franca.
-            Um ano depois, a estação Jardim Alvorada passou a funcionar
-            entre as estações Jardim Lima e Aeroporto I.
-            3) Insira as novas estações no vetor nas posições apropriadas.
-                Faça um loop for TRADICIONAL EM SENTIDO INVERSO para exibir
-                as estações e depois passe um traço horizontal (<hr>).
-            
+            4. Declare um vetor vazio
         */
-
-        let posEstacao = linha1.indexOf('Estação')
-        linha1.splice(posEstacao, 0, 'Vila Imperador')
-
-        // Usando indexOf diretamente sem uso de variável auxiliar
-        linha1.splice(linha1.indexOf('Aeroporto I'), 0, 'Jardim Alvorada')
-
-        for(let i = linha1.length - 1; i >= 0; i--) {
-            document.write(linha1[i] + '<br>')
-        }
-        document.write('<hr>')
+        let numeros = []    // Poderia ser: let numeros = Array()
 
         /*
-            Em 2130, a estação Centro foi desativada, e em seu lugar duas
-            novas estações entraram em funcionamento: as estações 9 de Julho
-            e Champagnat.
-            
-            4) Modifique o vetor de acordo com as alterações.
-                Faça um loop for TRADICIONAL para exibir as estações e depois
-                passe um traço horizontal (<hr>).
+            5. Escreva uma expressão de função que receba um vetor de números, 
+            calcule a soma de seus elementos e retorne o resultado. Dentro da função, 
+            utilize um loop for..of para iterar entre os elementos do vetor.
         */
-
-        // Na posição antes ocupada pela estação Centro, será excuído 1 elemento
-        // e inseridos outros dois elementos no lugar
-        linha1.splice(linha1.indexOf('Centro'), 1, '9 de Julho', 'Champagnat')
-
-        for(let i = 0; i < linha1.length; i++) {
-            document.write(linha1[i] + '<br>')
+        const somaVet = function(vet) {
+            let soma = 0
+            for(let n of vet) {
+                soma += n
+            }
+            return soma
         }
-        document.write('<hr>')
-        
+
         /*
-            Em 2133, no entanto, Franca entrou em guerra com os 
-            restinguenses, que invadiram e destruíram as duas estações 
-            mais ao sul do metrô de Franca. Neste mesmo ano, em meio
-            à crise, foi fechada a estação Santa Teresinha.
-            5) Modifique o vetor de acordo com as alterações.
-                Faça um loop FOR...OF para exibir as estações e depois
-                passe um traço horizontal (<hr>).            
+            6. Declare uma função que
         */
+        function acumular() {
+            /*
+                6a) leia o valor digitado pelo usuário;
+            */
+            let num = parseFloat(elNum.value) // Já converte para número de ponto flutuante
 
-        linha1.pop() // Última estação
-        linha1.pop() // Penúltima estação
+            /*
+                6b) verifique se o valor digitado corresponde ao número válido;
+            */
+            if(isNaN(num)) {
+                alert('Informe um número válido!')
+                elNum.focus()
+            }
+            else {
+                /*
+                    6c) caso tenha passado na validação, insira o número no início 
+                    do vetor declarado no passo 4;
+                */
+                numeros.unshift(num)
 
-        // Alternativa
-        // linha1.splice(linha1.length - 2) // Apaga a partir da posição encontrada
+                /*
+                    6d) efetue uma chamada à função codificada no passo 5, passando 
+                    a ela o vetor e capturando o retorno em uma variável;
+                */
+                let soma = somaVet(numeros)
 
-        linha1.splice(linha1.indexOf('Santa Teresinha'), 1)
+                /*
+                    6e) calcule a média, dividindo o resultado obtido na letra d) 
+                    pelo número de elementos do vetor;
+                */
+                let media = soma / numeros.length
 
-        for(let estacao of linha1) {
-            document.write(estacao + '<br>')
-        }      
+                /*
+                    6f) preencha os lugares reservados à quantidade, à média e à 
+                    soma na página, ajustando a propriedade innerText dos respectivos
+                    elementos;
+                */
+                elQuant.innerText = numeros.length
+                elMedia.innerText = media
+                elSoma.innerText = soma
 
-	</script>
-</head>
+                /*
+                    6g) limpe o valor do campo numérico e coloque o foco nele.
+                */
+                elNum.value = ''
+                elNum.focus()
+            }
+        }
 
-<body>
+        /*
+            7. Associe a função declarada no passo 6 ao evento clique do botão 
+            existente na página.
+        */
+        elAcumular.addEventListener('click', acumular)
+
+    </script>
 
 </body>
 
-</html> 
-</head>
-<body>
-
-</body>
 </html> 
