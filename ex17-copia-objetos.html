@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">    
+</html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de documento HTML</title>
+    <script>
+        
+        'use strict'
+     /*   
+     1) Declare um objeto pet1 que represente um cão e preencha 
+     - nome
+     raça
+     cor 
+     sexo
+     nome do pai
+     nome da mae 
+     */
+
+    let pet1 = {
+     nome: 'bily',
+     'raçã': 'pastor',
+     cor:'preto',
+     sexo: 'M',
+     'nome do pai': 'joão',
+     'nome da mãe': 'maria'
+  }
+
+    let pet2 = {... pet1} 
+
+     pet2.nome = "negão"
+     pet2.cor = 'preto'
+     pet2.sexo = 'M'
+     pet2['nome da mãe'] ='nega'
+
+    
+
+    for(let prop in pet1) {
+        document.write(`${prop} =>  ${pet1[prop]}<br>`)
+   }
+
+    document.write('--------------------------<br>')
+
+    for(let prop in pet2) {
+        document.write(`${prop} => ${pet2[prop]}<br>`)
+    } 
+
+
+    
+     </script>
+</head>
+<body>
+
+</body>
+</html> 
