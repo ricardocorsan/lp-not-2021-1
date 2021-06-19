@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Franca/SP no Censo 2010</title>
+    <style>
+        html {
+            font-family: Calibri, Arial, sans;
+            font-size: 16px;
+        }
+        body {
+            background-color: #95CFF4;
+        }
+        main {
+            background-color: #444444;
+            color: #dddddd;
+            padding: 40px;
+            max-width: 80%;
+            margin: 50px auto;
+            border-radius: 20px;
+            box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.6);
+        }
+        h1 {
+            color: #95CFF4;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgb(255, 255, 255, 0.5);
+            font-size: 2.5rem;
+        }
+        img {
+            width: 400px;
+            display: block;
+            margin: 20px auto;
+        }
+        #dados {
+            text-align: center;
+            font-size: 1.2rem;
+            width: 550px;
+            margin: 0 auto;
+        }
+    </style>
+    <body>
+    <main>
+        <h1>Franca/SP no Censo 2010</h1>
+        <img src="bandeira-franca.jpg" alt="Bandeira de Franca/SP" />
+        <ul id="dados"></ul>
+    </main>
+</body> 
+
+
+    <script>
+        // Ativa verificações adicionais de variáveis
+        // Modo "chato" do JavaScript
+        'use strict'
+
+        const populacao = [
+            23,     // +100 anos
+            118,  // 95 a 99 anos
+            513,  // 90 a 94 anos
+            1225, // 85 a 89 anos
+            2773, // 80 a 84 anos
+            4498, // 75 a 79 anos
+            6524, // 70 a 74 anos
+            8558, // 65 a 69 anos
+            12147,  // 60 a 64 anos
+            15296,  // 55 a 59 anos
+            19013,  // 50 a 54 anos
+            22012,  // 45 a 49 anos
+            23369,  // 40 a 44 anos
+            23766,  // 35 a 39 anos
+            25220,  // 30 a 34 anos
+            27131,  // 25 a 29 anos
+            28617,  // 20 a 24 anos
+            27294,  // 15 a 19 anos
+            26479,  // 10 a 14 anos
+            23098,  // 5 a 9 anos
+            20966,  // 0 a 4 anos
+        ]
+
+        const info = {
+            'altitude': '1040',
+            'aniversário': '28/11',
+            'gentílico': 'francano',
+            'área': 605.679            
+        }
+
+        /*
+
+            1. Capture o elemento cujo id é "dados" em uma variável.
+
+            
+*/
+
+
+let listadesordenada = document.querySelector('#dados')
+
+
+
+
+
+
+
+
+
+   
+
+    
+
+
+    
+
+       
+       
+  /*
+       2. Declare uma variável e inicialize-a com o valor 0 (zero). Usando o loop for
+tradicional ou o loop for..of, some os valores do vetor "populacao" e armazene
+o resultado na variável.
+
+*/
+/*for(let i=0;i<populacao.length-1;i++ ){
+soma += i
+}
+*/
+
+let soma = 0
+
+for(let lido of populacao){
+ 
+ soma += lido
+
+}
+
+
+
+
+
+
+
+
+/*3. Declare uma função que receba área e população e retorne a densidade populacional, 
+dividindo a segunda pela primeira.
+*/
+
+
+let area = 605.679
+
+function densidade (area,soma){
+
+
+    let dpop = area/soma
+
+
+    return dpop
+}
+
+
+
+   
+
+   /* 4. Crie novos itens de lista em código e coloque neles as informações do objeto "info".
+Os novos itens de lista devem ser adotados pelo elemento cujo id é "dados". Além das
+informações contidas no objeto "info", devem ser criados também:
+
+*/
+
+// Criando 1° elemento da lista e referenciando ao objeto info
+let altitude = document.createElement('li')// crie elemento
+
+altitude.textContent = `Altitude :  ${info.altitude}`// escrevi neste elemento
+
+let lista = document.querySelector('#dados') // identifiquei e capturei o pai do elememente (ul que tem id= dados)
+
+lista.appendChild(altitude)// O pai adotou o filho.
+
+
+
+// Criando 2° elemento da lista e referenciando ao objeto info
+let aniversario = document.createElement('li')// crie elemento
+
+aniversario.textContent = 'Aniversário : ' + info.aniversário// escrevi neste elemento
+
+lista.appendChild(aniversario)// O pai adotou o filho.
+
+// Criando 3° elemento da lista e referenciando ao objeto info
+let gentilico = document.createElement('li')// crie elemento
+
+gentilico.textContent = 'Gentílico : ' + info.gentílico// escrevi neste elemento
+lista.appendChild(gentilico)// O pai adotou o filho.
+
+
+
+//// Criando 4° elemento da lista e referenciando ao objeto info
+let elarea = document.createElement('li')// crie elemento
+
+elarea.textContent = 'Area : ' + info.área// escrevi neste elemento
+
+lista.appendChild(elarea)// O pai adotou o filho.
+
+
+
+
+
+
+/*a) um item de lista para informar a população, mostrando o resultado da soma obtida
+   na instrução nº 2.
+*/
+
+let popul = document.createElement('li')// crie elemento
+
+popul.textContent = 'População : ' +soma +' Habitantes' // escrevi neste elemento
+
+lista.appendChild(popul)// O pai adotou o filho.
+
+
+
+
+
+/*b) um item de lista para informar a densidade populacional, mostrando o resultado de
+   uma chamada à função delcarada na instrução nº 3.
+
+*/
+let densidadep = document.createElement('li')// crie elemento
+
+densidadep.textContent = 'Densidade Populacional : '+ densidade(soma, area).toFixed(2) + 'Habitantes/km²' // escrevi neste elemento
+
+
+lista.appendChild(densidadep)// O pai adotou o filho.
+</script>
+</head>
+
+</body>
+</html>
