@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de notas</title>
+    <style>
+        * {
+            font-family: Calibri, Arial, sans;
+        }
+        body {
+            background-color: cadetblue;
+        }
+        main {
+            margin: 50px auto;
+            max-width: 75%;
+            background: #444;
+            color: white;
+            border-radius: 16px;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+            padding: 30px;
+            text-align: center;
+        }
+        h1 {
+            color: cadetblue;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.25);
+        }
+        div {
+            margin: 16px;
+        }
+        label {
+            display: block;
+        }
+        button {
+            font-size: 120%;
+            background-color: cadetblue;
+            color: white;
+            border: 2px solid white;
+            border-radius: 6px;
+        }
+        input {
+            border-radius: 6px;
+        }
+        #relat {
+            border-top: 2px solid white;
+        }
+    </style>
+   </head>
+<body>
+    <main>
+        <h1>Cadastro de notas</h1>
+        <div>
+            <label for="nome">Nome</label>
+            <input id="nome">
+        </div>
+        <div>
+            <label for="nota1">Nota 1</label>
+            <input id="nota1" type="number">
+        </div>
+        <div>
+            <label for="nota2">Nota 2</label>
+            <input id="nota2" type="number">
+        </div>
+        <div>
+            <button id="enviar">Enviar</button>
+        </div>
+        <div id="relat"></div>
+    </main>
+
+    <script>
+        // Ativa verificações adicionais de variáveis
+        // Modo "chato" do JavaScript
+        'use strict'
+        
+    </script>
+     <script>
+        // Ativa verificações adicionais de variáveis
+        // Modo "chato" do JavaScript
+        'use strict'
+
+
+
+        // para ativação de em dom
+        EleNome = document.querySelector("#nome")
+        EleN1 = document.querySelector("#nota1")
+        EleN2 = document.querySelector("#nota2")
+        ElEnviar= document.querySelector("#enviar")
+        ElRelat= document.querySelector("#relat")
+
+
+
+        //entrada de valor da notas 1 e 2 
+        nota1=Number(EleN1).value
+        nota2=Number(EleN2).value
+        nome =EleNome.value
+      
+          function media (n1,n2){
+            let media = (n1+n2)/2
+            return media
+        }
+
+
+
+        // mostra se o aluno está aprovado ou reprovado
+        function verificar(media){
+            if(media >=6){
+                mensagem ="Aprovado"
+            }
+            else{
+                mensagem ="Reprovado"
+            }
+            return mensagem
+            
+        }
+
+        //função para validar campos do nome do aluno
+        function validarCampos(){
+            if (EleNome.value ===''){
+            alert('Digite o nome')
+            ElNome.focus()
+            return false
+        }
+        
+
+        //  mostra a primeira nota do aluno
+        if (EleN1.value ==='' ||EleN1.value >10 ){
+            alert('Digite a nota 1')
+            EleN1.focus()
+            return false
+           
+        }
+
+        // mostra a segunda nota do aluno
+        if (EleN2.value ==='' ||EleN2.value >10 ){
+            alert('Digite a nota 2')
+            EleN2.focus()
+            return false
+        }
+
+        let m = media(nota1,nota2)
+        let cond =verificar(media)
+
+      const Parag = document.createElement('p') 
+        Parag.textContent = `Nome ${nome} <br> Media ${m} <br> Situação ${cond} <hr>`
+        const desc  = document.querySelector('ElRelat')
+
+        desc.insertBefore(Parag,ElRelat)
+
+        EleNome.value = ''
+        EleN1.value = ''
+        EleN2.value = ''
+        EleNome.focus()
+
+        }
+
+        ElEnviar.addEventListener('onClick',validarCampos)
+
+
+ </script>
+    
+</body>
+</html>

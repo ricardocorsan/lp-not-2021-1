@@ -1,209 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acumulador</title>
-
-    <style>
-        * {
-            font-family: 'Candara', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        }
-
-        html,
-        body {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            font-size: 12pt;
-            line-height: 18pt;
-            color: #444;
-        }
-
-        body {
-            background-color: indigo;
-            background-image: linear-gradient(slateblue 50%, indigo);
-            background-repeat: no-repeat;
-            padding: 0;
-        }
-
-        body>div {
-            background: whitesmoke;
-            margin: 3%;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-        }
-
-        h1 {
-            font-size: 2rem;
-            text-align: center;
-            color: indigo;
-            text-shadow: 2px 2px 2px rgba(75, 0, 130, 0.5);
-
-        }
-
-        div>div {
-            padding: 10px;
-            width: 70%;
-            max-width: 90%;
-            min-width: 250px;
-            margin: 1% auto;
-            text-align: center;
-        }
-
-        div label {
-            display: block;
-        }
-
-        button {
-            font-size: 12pt;
-            padding: 8px;
-            border-radius: 8px;
-            color: white;
-            background-color: indigo;
-        }
-
-        p {
-            display: inline-block;
-            width: 30%;
-            margin: 0;
-        }
-
-        p span {
-            font-weight: bold;
-            color: indigo;
-        }
-
-        div div:last-of-type {
-            background-color: lavender;
-            border-radius: 12px;
-        }
-    </style>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Documento Modelo</title>
+   
 </head>
-
 <body>
+   <h1>Inserção em ordem</h1>
+   <label>Número</label>
+   <input type="number" id="numero">
+   <button id="inserir">Inserir</button>
+   <div id="resultado"></div>
 
-    <div>
-        <h1>Acumulador</h1>
+   <script>
+      // Liga o modo "chato" do JS
+      // Não deixa usar variáveis sem let ou var
+      'use strict'
 
-        <div>
-            <label>Informe um número</label>
-            <input id="num" type="number">
-        </div>
+      const numero = document.querySelector('#numero')
+      const inserir = document.querySelector('#inserir')
+      const resultado = document.querySelector('#resultado')
 
-        <div>
-            <button id="acumular">Acumular!</button>
-        </div>
+      /*
+         Na parte HTML, coloque um input numérico com seu label, um botão
+         "Inserir" e uma div para exibir os resultados.
+         Na parte JS, declare um vetor vazio.
+      */
 
-        <div>
-            <p>Quantidade: <span id="quant">0</span></p>
-            <p>Média: <span id="media">0</span></p>
-            <p>Soma: <span id="soma">0</span></p>
-        </div>
-    </div>
+      let vetor = []
 
-    <script>
-        // 'use strict' impede que variáveis sejam declaradas
-        // sem o uso de let, var ou const
-        // Inicializar variáveis diretamente é má prática de
-        // programação
-        'use strict'
+      /*
+         Na função associada ao botão, verifique se o valor informado no 
+         input é um número. Caso positivo, insira este número EM ORDEM 
+         CRESCENTE dentro do vetor (lembre-se de que o usuário poderá
+         inserir quantos números quiser dentro do vetor, e que pode já
+         haver outros números no vetor inseridos anteriormente). Ignore 
+         números repetidos.
+      */
 
-        /*
-            3. Com JavaScript, capture todos os elementos da parte HTML que tenham id. 
-            Utilize um dos métodos para capturar metade dos elementos e o outro método 
-            para capturar os demais.
-        */
-        const elNum = document.getElementById('num')
-        const elAcumular = document.getElementById('acumular')
-        const elQuant = document.querySelector('#quant')
-        const elMedia = document.querySelector('#media')
-        const elSoma = document.querySelector('#soma')
+      function processa() {
 
-        /*
-            4. Declare um vetor vazio
-        */
-        let numeros = []    // Poderia ser: let numeros = Array()
+         let valido = true
+         
+         if(isNaN(numero.value)) {
+            alert('Insira um número válido.')
+            numero.focus()
+            valido = false
+         }
+         
+         if(valido) {
 
-        /*
-            5. Escreva uma expressão de função que receba um vetor de números, 
-            calcule a soma de seus elementos e retorne o resultado. Dentro da função, 
-            utilize um loop for..of para iterar entre os elementos do vetor.
-        */
-        const somaVet = function(vet) {
-            let soma = 0
-            for(let n of vet) {
-                soma += n
+            let num = parseInt(numero.value)
+
+            let i // i deve ser lido após o for
+            for(i = 0; i < vetor.length; i++) {
+               // A posição de inserção é igual à posição
+               // do primeiro número maior que o que está a ser inserido
+               console.log(vetor, num)
+
+               if(vetor[i] > num) {
+                  vetor.splice(i, 0, num)
+                  break // Interrompe o loop for
+               }
             }
-            return soma
-        }
-
-        /*
-            6. Declare uma função que
-        */
-        function acumular() {
-            /*
-                6a) leia o valor digitado pelo usuário;
-            */
-            let num = parseFloat(elNum.value) // Já converte para número de ponto flutuante
-
-            /*
-                6b) verifique se o valor digitado corresponde ao número válido;
-            */
-            if(isNaN(num)) {
-                alert('Informe um número válido!')
-                elNum.focus()
+            
+            // O for foi todo percorrido e não ocorreu inserção
+            // Vale também para quando o vetor estiver vazio (primeiro elemento)
+            if(i === vetor.length) {
+               vetor.push(num)
             }
-            else {
-                /*
-                    6c) caso tenha passado na validação, insira o número no início 
-                    do vetor declarado no passo 4;
-                */
-                numeros.unshift(num)
-
-                /*
-                    6d) efetue uma chamada à função codificada no passo 5, passando 
-                    a ela o vetor e capturando o retorno em uma variável;
-                */
-                let soma = somaVet(numeros)
-
-                /*
-                    6e) calcule a média, dividindo o resultado obtido na letra d) 
-                    pelo número de elementos do vetor;
-                */
-                let media = soma / numeros.length
-
-                /*
-                    6f) preencha os lugares reservados à quantidade, à média e à 
-                    soma na página, ajustando a propriedade innerText dos respectivos
-                    elementos;
-                */
-                elQuant.innerText = numeros.length
-                elMedia.innerText = media
-                elSoma.innerText = soma
-
-                /*
-                    6g) limpe o valor do campo numérico e coloque o foco nele.
-                */
-                elNum.value = ''
-                elNum.focus()
+            
+            // Exibição do resultado
+            resultado.innerHTML = ''
+            for(let x = 0; x < vetor.length; x++) {
+               resultado.innerHTML += 'Posição ' + x + ': ' + vetor[x] + '<br>'
             }
-        }
 
-        /*
-            7. Associe a função declarada no passo 6 ao evento clique do botão 
-            existente na página.
-        */
-        elAcumular.addEventListener('click', acumular)
+            numero.value = '' // Limpa o campo do número
+            numero.focus()
 
-    </script>
+         }
+
+      }
+
+      inserir.addEventListener('click', processa)
+
+      /*
+         Para colocar o número no local correto, você deverá percorrer
+         o vetor com um loop for, verificando se o número que já está na
+         posição é menor ou maior que o número que está sendo inserido.
+         Quando encontrar um número MENOR do que o que será inserido,
+         você terá encontrado a posição correta para inserir em ordem.
+         Faça a inserção com splice() e saia do loop com break.
+         A cada inserção, exiba os elementos do vetor dentro da div de 
+         resultados.
+      */      
+
+   </script>
 
 </body>
-
-</html> 
+</html>
